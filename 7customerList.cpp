@@ -5,6 +5,10 @@ class Customer{
     int id;
     std::string phone;
     public:
+    // Customer(){
+    //     id = -1;
+    //     phone = "None";
+    // }
     void set(int id, std::string phone){
         this->id = id;
         this->phone = phone;
@@ -16,6 +20,7 @@ class Customer{
 
 int main(){
     Customer noice[3];
+    //Customer gg[33];
     for(int i=0;i<3;i++){
         int id;
         std::string phone;
