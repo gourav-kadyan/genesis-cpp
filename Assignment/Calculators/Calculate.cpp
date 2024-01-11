@@ -24,4 +24,7 @@ void Calculate::Divide(){
     if(this->b == 0){
         std::cout << " Invalid Operation "
     }
+    else{
+        std::cout << (float)(this->a / this->b) << std::endl;
+    }
 }
