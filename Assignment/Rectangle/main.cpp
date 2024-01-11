@@ -7,7 +7,7 @@ int main(){
     obj.setwidth(5);
     Rectangle obj2;
     obj2.setlength(5);
-    obj2.setwidth(4);
+    obj2.setwidth(5);
 
     std::cout << obj.area() << " " << obj.samearea(obj2) << std::endl;
     return 0;
