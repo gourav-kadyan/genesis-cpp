@@ -1,59 +1,65 @@
-#include<iostream>
-#include<string>
+#include <iostream>
 #include "employee.h"
-
-Employee::Employee():name("New Employee"), size(3){
-    this->id = id_cnt;
-    id_cnt++;
-    marks = new int[size];
-    for(int i=0;i<3;i++){
-        marks[i] = 0;
+ 
+   int  Employee:: id_cnt = 0 ;
+   Employee:: Employee():name("New_User"),size(3)
+    {
+        std::cout << "Default Constructor Called !!"<< std::endl ;
+        id_cnt++ ;
+        id = id_cnt ;
+        marks = new int[size] ;
+        for(int i = 0 ; i < size ;i++)
+        marks[i] = 0 ;
     }
-    std::cout << std::endl << "Default Parameters invoked" << std::endl;
-}
-
-Employee::Employee(std::string emp_name, int sz, int* arr):name("emp_name"),size(sz){
-    this->id = id_cnt;
-    id_cnt++;
-    marks = new int[size];
-    for(int i=0;i<size;i++){
-        marks[i] = arr[i];
+ 
+   Employee:: Employee(std::string nm ,int sz , int *arr):name(nm), size(sz)
+    {
+        std::cout << "Parmeterized Constructor Called !!"<< std::endl ;
+        id_cnt++  ;
+        id = id_cnt ;
+ 
+        marks = new int[size] ;
+        for(int i = 0 ; i < size ; i++)
+        {
+            marks[i] = arr[i] ;
+        }
     }
-    this->name = emp_name;
-    std::cout << std::endl << "Parameterize constructor invoked" << std::endl;
-}
-
-Employee::Employee(const Employee &obj){
-    this->id = obj.id;
-    this->name = obj.name;
-    this->size = obj.size;
-    marks = new int[size];
-    for(int i=0;i<size;i++){
-        marks[i] = obj.marks[i];
+ 
+   Employee::   Employee(Employee & e){
+        std::cout << "Copy Constructor Called !!"<< std::endl ;
+        this->name = e.name ;
+        this->id = e.id ;
+        this->size = e.size ;
+        marks = new int[size] ;
+        for(int i = 0 ; i < size ; i++)
+        {
+            marks[i] = e.marks[i] ;
+        }
     }
-    std::cout << std::endl << "Copy Constructor invoked" << std::endl;
-}
-
-void Employee::Display(){
-    std::cout << "Id -- " << this->id << std::endl << "Name -- " << this->name << std::endl;
-    for(int i=0;i<this->size;i++){
-        std::cout << "Marks of Sub NO. " << i+1 << " is " << marks[i] << std::endl;
+ 
+    void Employee::Display()
+    {
+        std::cout <<  "Name = " << name << " id : " << id << std::endl;
+ 
+        for(int i = 0 ; i < size ;i++)
+        {
+            std::cout<< "Marks Obtained at Exam " << i+1 <<"-> " <<marks[i] << std::endl ;  
+        }
     }
-}
 
-void Employee::set(std::string emp_name, int sz, int* arr){
-    this->name = emp_name;
-    this->size = sz;
-    marks = new int[size];
-    for(int i=0;i<size;i++){
-        marks[i] = arr[i];
+    std::ostream& operator<<(std::ostream &obj,Employee &emp){
+        obj << "Employee Id is " << emp.id << std::endl;
+        obj << "Employee Name is " << emp.name << std::endl;
+        int size = emp.size;
+        obj << "No. of Subjects " << size << std::endl;
+        for(int i=0;i<size;i++){
+            obj << i << " no Marks are " << emp.marks[i] << std::endl;
+        }
+        return obj;
     }
-    this->name = emp_name;
-}
-
-Employee::~Employee(){
-    delete []marks;
-    std::cout << std::endl << "Destructor Invoked" << std::endl;
-}
-
-int Employee::id_cnt = 1000;
+ 
+    Employee:: ~Employee()
+    {
+        std::cout << "Destructor Called !!"<< std::endl ;
+        delete []marks ;
+    }

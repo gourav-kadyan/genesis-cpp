@@ -1,54 +1,66 @@
-#include<iostream>
-#include<string>
+#include <iostream>
 #include "employee.h"
-
-int main(){
-    Employee emp1;
-    emp1.Display();
-    int *arr = new int[3];
-    for(int i=0;i<3;i++){
-        arr[i] = i+1;
+int solve(int *arr, int size){
+    int avg = 0;
+    for(int i=0;i<size;i++){
+        avg += arr[i];
     }
-    Employee emp2("Noice",3,arr);
-    emp2.Display();
+    return avg/size;
+}
 
-    int sze;
-    std::string namee;
-    std::cout << std::endl << "Enter Name -- ";
-    std::cin >> namee;
-    std::cout << std::endl << "Enter No. of Sub -- ";
-    std::cin >> sze;
-
-    int *vv = new int[sze];
-    std::cout << "Now write all the marks --- " << std::endl;
-    for(int i=0;i<sze;i++){
-        std::cin >> vv[i];
-    } 
-    Employee emp3(namee,sze,vv);
-    emp3.Display();
-    Employee *emp4 = new Employee(namee,sze,vv);
-    emp4->Display();
-    Employee emp5 = emp1;
-    std::cout << "Making array of objects" ;
-    int n;
-    std::cin >> n;
-    Employee obj[n];
+int findIndex(int arr[],int n){
+    int maxi = -1;
+    int index = 0;
     for(int i=0;i<n;i++){
-        int sz;
+        if(maxi < arr[i]){
+            index = i;
+            maxi = arr[i];
+        }
+    }
+    return index;
+}
+int main()
+{
+    std::cout << "Enter the number of employee" << std::endl ;
+    int n ;
+    std::cin >> n;
+    Employee e5[n];
+ 
+    for(int i = 0 ; i < n ; i++)
+    {
+        //e5[i] = new Employee;  
+        std::cout << "Enter Name for Employee : " << i+1 <<  std:: endl;
         std::string name;
-        std::cout << std::endl << "Enter Name -- ";
-        std::cin >> name;
-        std::cout << std::endl << "Enter No. of Sub -- ";
-        std::cin >> sz;
-
-        int *v = new int[sz];
-        std::cout << "Now write all the marks --- " << std::endl;
-        for(int i=0;i<sz;i++){
-            std::cin >> v[i];
-        } 
-        obj[i].set(name,sz,v);
-        obj[i].Display();
+        std::cin >> name  ;
+        e5[i].setName(name) ;
+ 
+        std::cout << "Enter number of subjects for which you appeared!!"<< std::endl ;
+        int sz ;
+        std::cin >> sz ;
+        e5[i].setSize(sz) ;
+ 
+        int *exam  =new int[sz] ;
+        for(int i = 0 ; i < sz ; i++)
+        {
+            std::cout<< "Enter Marks for exam" <<i+1 << std::endl ;
+            std::cin>>exam[i] ;
+        }
+        e5[i].setMarks(exam) ;
     }
 
-    return 0;
+    int ans[n];
+    for(int i=0;i<n;i++){
+        ans[i] = solve(e5[i].getMarks(),e5[i].getSize());
+    }
+    for(int i=0;i<n;i++){
+        std::cout << ans[i] << std::endl;
+    }
+
+    int x = findIndex(ans,n);
+    std::cout << ans[x] << " " << std::endl;
+
+    std::cout << std::endl << std::endl << std::endl;
+    std::cout << e5[x] ;
+    std::cout << std::endl << std::endl;
+    
 }

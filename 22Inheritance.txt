@@ -1,0 +1,143 @@
+Inheritance in C++ is a way to create a new class (derived class) by inheriting features from an existing class (base class). There are several types of inheritance, and here are brief explanations with examples in modern C++:
+
+1. **Single Inheritance:**
+   - A derived class inherits from only one base class.
+   - Example:
+     ```cpp
+     class Animal {
+         // ...
+     };
+
+     class Dog : public Animal {
+         // ...
+     };
+     ```
+
+2. **Multiple Inheritance:**
+   - A derived class inherits from more than one base class.
+   - Example:
+     ```cpp
+     class Engine {
+         // ...
+     };
+
+     class Wheels {
+         // ...
+     };
+
+     class Car : public Engine, public Wheels {
+         // ...
+     };
+     ```
+
+3. **Multilevel Inheritance:**
+   - A derived class becomes the base class for another class.
+   - Example:
+     ```cpp
+     class Animal {
+         // ...
+     };
+
+     class Mammal : public Animal {
+         // ...
+     };
+
+     class Dog : public Mammal {
+         // ...
+     };
+     ```
+
+4. **Hierarchical Inheritance:**
+   - Multiple derived classes inherit from a single base class.
+   - Example:
+     ```cpp
+     class Shape {
+         // ...
+     };
+
+     class Circle : public Shape {
+         // ...
+     };
+
+     class Square : public Shape {
+         // ...
+     };
+     ```
+
+5. **Hybrid Inheritance:**
+   - Combination of multiple inheritance types.
+   - Example:
+     ```cpp
+     class Engine {
+         // ...
+     };
+
+     class ElectricMotor : public Engine {
+         // ...
+     };
+
+     class Car : public ElectricMotor {
+         // ...
+     };
+
+     class ElectricCar : public Car {
+         // ...
+     };
+     ```
+
+6. **Virtual Inheritance:**
+   - Resolves the "diamond problem" in multiple inheritance.
+   - Example:
+     ```cpp
+     class Animal {
+         // ...
+     };
+
+     class Mammal : virtual public Animal {
+         // ...
+     };
+
+     class Bird : virtual public Animal {
+         // ...
+     };
+
+     class Bat : public Mammal, public Bird {
+         // ...
+     };
+     ```
+
+7. **Access Control in Inheritance:**
+   - `public`: Public members of the base class become public members of the derived class.
+   - `protected`: Public and protected members of the base class become protected members of the derived class.
+   - `private`: Public and protected members of the base class become private members of the derived class.
+
+   ```cpp
+   class Base {
+   public:
+       int publicMember;
+   protected:
+       int protectedMember;
+   private:
+       int privateMember;
+   };
+
+   class DerivedPublic : public Base {
+       // publicMember is public
+       // protectedMember is protected
+       // privateMember is not accessible
+   };
+
+   class DerivedProtected : protected Base {
+       // publicMember is protected
+       // protectedMember is protected
+       // privateMember is not accessible
+   };
+
+   class DerivedPrivate : private Base {
+       // publicMember is private
+       // protectedMember is private
+       // privateMember is not accessible
+   };
+   ```
+
+These concepts form the foundation of object-oriented programming in C++. Understanding inheritance helps create a more organized and reusable code structure.

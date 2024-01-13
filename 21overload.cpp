@@ -155,11 +155,12 @@ int main(){
 
 
     //[] operator overload -- subscript operator overload
-    char lol[20] = "yello";
+    char lol[20] = "yello world";
     test temp(lol);
     std::cout << temp[0] << std::endl;
     temp[0] = 'S';
     std::cout << temp[0] << std::endl;
-
+    std::cout << lol << std::endl;
+    
     return 0;
 }
