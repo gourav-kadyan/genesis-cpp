@@ -1,79 +1,101 @@
-// Candidate.cpp
 #include<iostream>
 #include<string>
 #include "Candidate.h"
 
-int Candidate::id_count = 1000; // Initialize the static variable
-
-Candidate::Candidate() {
-    this->name = "New Employee";
-    this->applied = Engineer;
-    this->id = id_count;
-    id_count++;
+//constructor
+Candidate::Candidate():Candidate_Name("NoName"),Candidate_Id(69),JobApplied(Job(1)){}
+Candidate::Candidate(std::string name,int id,Job j):Candidate_Name(name),Candidate_Id(id),JobApplied(j){}
+Candidate::Candidate(Candidate &ob){
+    this->Candidate_Name = ob.Candidate_Name;
+    this->Candidate_Id = ob.Candidate_Id;
+    this->JobApplied = ob.JobApplied;
 }
 
-Candidate::Candidate(std::string Naam, Job J) : name(Naam), applied(J) {
-    this->id = id_count;
-    id_count++;
+
+//setters
+void Candidate::setName(std::string name){
+    this->Candidate_Name = name;
 }
 
-Candidate::Candidate(const Candidate &obj) {
-    this->id = id_count;
-    id_count++;
-    this->name = obj.name;
-    this->applied = obj.applied;
+void Candidate::setId(int id){
+    this->Candidate_Id = id;
 }
 
-void Candidate::setName(std::string name) {
-    this->name = name;
+void Candidate::setJob(Job j){
+    this->JobApplied = j;
 }
 
-void Candidate::setJob(Job j) {
-    this->applied = j;
+
+//getters
+std::string Candidate::getName(){
+    return this->Candidate_Name;
 }
 
-std::string Candidate::getName() {
-    return this->name;
+int Candidate::getId(){
+    return this->Candidate_Id;
 }
 
-std::string Candidate::getJob() {
-    std::string s= "";
-    switch(this->applied){
+std::string Candidate::getJob(){
+    std::string noice = "";
+    switch(this->JobApplied){
         case Clerk:
-            s = "Clerk";
+            noice = "Clerk";
             break;
-        
         case Manager:
-            s = "Manager";
+            noice = "Manager";
             break;
-        
         case Engineer:
-            s = "Engineer";
+            noice = "Engineer";
             break;
-        
         default:
-            s = "Plumber";
+            noice = "Choose Correct Job";
             break;
     }
-
-    return s;
+    return noice;
 }
 
-void Candidate::accept() {
-    std::string x;
-    std::cin >> x;
-    setName(x);
-    int app;
-    std::cin >> app;
-    setJob(static_cast<Job>(app));
+void Candidate::accept(){
+    std::string name;
+    std::cout << "Enter Your Name -> " ;
+    std::cin >> name;
+    setName(name);
+    int id;
+    std::cout << "Enter Your Id -> ";
+    std::cin >> id;
+    setId(id);
+    std::cout << "Enter Your Job -> " << std::endl;
+    std::cout << "0 - For Clerk" << std::endl;
+    std::cout << "1 - For Manager" << std::endl;
+    std::cout << "2 - For Engineer" << std::endl;
+    int job;
+    std::cin >> job;
+    setJob(Job(job));
+    std::cout << "Code Test 1 Details" << std::endl;
+    accept1();
+    std::cout << "Code Test 2 Details" << std::endl;
+    accept2();
 }
 
-Candidate::~Candidate() {
-    std::cout << "Destructor Called" << std::endl;
-}
-
-std::ostream& operator<<(std::ostream &os, Candidate &c) {
-    os << "ID: " << c.id << std::endl << "Name: " << c.name << std::endl << "Job: " << c.getJob();
+std::ostream& operator<<(std::ostream& os, Candidate& obj){
+    os << std::endl << "Candidate Id -> " << obj.getId() << std::endl;
+    os << "Candidate Name -> " << obj.getName() << std::endl;
+    os << "Candidate Job -> " << obj.getJob() << std::endl;
+    os << std::endl;
+    os << "Code Test 1 Details" << std::endl;
+    os << "Code Test 1 Id -> " << obj.getId1() << std::endl;
+    os << "Code Test 1 Date -> " << obj.getDate1() << std::endl;
+    os << "Code Test 1 Marks -> " << obj.getMarks1() << std::endl;
+    os << "Code Test 2 Details" << std::endl;
+    os << "Code Test 2 Id -> " << obj.getId2() << std::endl;
+    os << "Code Test 2 Date -> " << obj.getDate2() << std::endl;
+    os << "Code Test 2 Marks -> " << obj.getMarks2() << std::endl;
+    
     return os;
+}
+
+Candidate::~Candidate(){
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << "Candidate Destructor Called" << std::endl;
 }
 

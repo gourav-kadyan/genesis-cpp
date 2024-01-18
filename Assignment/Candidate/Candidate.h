@@ -1,26 +1,34 @@
-// Candidate.h
+
 #ifndef CANDIDATE_H
 #define CANDIDATE_H
 
-#include <iostream>
+#include<iostream>
+#include<string>
+#include "CodeTest1.h"
+#include "CodeTest2.h"
+enum Job {Clerk, Manager, Engineer};
+class Candidate:public CodeTest1, public CodeTest2{
+    std::string Candidate_Name;
+    int Candidate_Id;
+    Job JobApplied;
 
-enum Job { Clerk, Manager, Engineer };
-
-class Candidate {
-    std::string name;
-    static int id_count; // Initialize the static variable here
-    int id;
-    Job applied;
-public:
+    public:
     Candidate();
-    Candidate(std::string, Job);
-    Candidate(const Candidate &);
+    Candidate(std::string, int, Job);
+    Candidate(Candidate &);
+
     void setName(std::string);
-    std::string getName();
+    void setId(int);
     void setJob(Job);
+
+    std::string getName();
+    int getId();
     std::string getJob();
+
     void accept();
-    friend std::ostream& operator<<(std::ostream &, Candidate &);
+
+    friend std::ostream& operator<<(std::ostream&, Candidate &);
+
     ~Candidate();
 };
 
