@@ -4,16 +4,16 @@
 int main(){
     // Bill obj[3];
     Bill *obj = new Bill[3];
-    try{
+    // try{
         for(int i=0;i<3;i++){
             obj[i].accept();
         }
-    }
+    // }
     
-    catch(int x){
-        std::cout << "Please Write Valid Values" << std::endl;
-        return 0;
-    }
+    // catch(int x){
+    //     std::cout << "Please Write Valid Values" << std::endl;
+    //     return 0;
+    // }
     for(int i=0;i<3;i++){
         std::cout << obj[i] << std::endl;
     }

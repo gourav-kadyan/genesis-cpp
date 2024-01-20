@@ -49,8 +49,9 @@ void Date::accept(){
     }
     catch(int x){
         std::cout << "Enter a Valid Month Please" << std::endl;
-        throw;
-        return;
+        // throw;
+        exit(69);
+        // return;
     }
     std::cout << "Enter a Day -> ";
     std::cin >> day;
@@ -73,7 +74,8 @@ void Date::accept(){
     }
     catch(int x){
         std::cout << "Enter a Valid Day" << std::endl;
-        throw;
+        // throw;
+        exit(69);
     }
     setDay(day); 
 }
